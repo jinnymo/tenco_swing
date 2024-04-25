@@ -33,7 +33,7 @@ public class FlowLayoutEx2 extends JFrame {
 		}
 
 	}
-
+ 
 	// 컴포넌트들을 배치하는 기능
 	public void setInitLayout() {
 		super.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 50));
