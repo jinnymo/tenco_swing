@@ -26,7 +26,7 @@ public class FlowLayoutEx2 extends JFrame {
 
 	// 멤버 변수를 초기화 하는 기능 (값 넣다)
 	public void initData() {
-		arrayB = new JButton[50];
+		arrayB = new JButton[30];
 		for (int i = 0; i < arrayB.length; i++) {
 			arrayB[i] = new JButton("button" + i);
 			
