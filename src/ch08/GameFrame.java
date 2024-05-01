@@ -48,7 +48,7 @@ public class GameFrame extends JFrame {
 
 		@Override
 		public void run() {
-			// true : 왼쪽으로 가는 상황
+			// true : 왼쪽으로 가는 상황 
 			// false : 오른쪽으로 가는 상황
 			boolean direction = true;
 			while (true) {
