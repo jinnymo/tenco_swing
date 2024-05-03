@@ -1,8 +1,7 @@
-package bubble.test.ex03;
+package bubble.test.ex04;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 
 public class Player extends JLabel implements Moveable {
 
@@ -14,10 +13,105 @@ public class Player extends JLabel implements Moveable {
 	private boolean right;
 	private boolean up;
 	private boolean down;
-	
+
 	private boolean leftWallCrash;
 	private boolean rightWallCrash;
+	private boolean blueWallCrash;
 	
+	private boolean lastStandingAreaRed;
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public ImageIcon getPlayerR() {
+		return playerR;
+	}
+
+	public void setPlayerR(ImageIcon playerR) {
+		this.playerR = playerR;
+	}
+
+	public ImageIcon getPlayerL() {
+		return playerL;
+	}
+
+	public void setPlayerL(ImageIcon playerL) {
+		this.playerL = playerL;
+	}
+
+	public boolean isDown() {
+		return down;
+	}
+
+	public void setDown(boolean down) {
+		this.down = down;
+	}
+	
+	public boolean islastStandingAreaRed() {
+		return lastStandingAreaRed;
+	}
+
+	public void setlastStandingAreaRed(boolean lastStandingAreaRed) {
+		this.lastStandingAreaRed = lastStandingAreaRed;
+	}
+	
+	public boolean isblueWallCrash() {
+		return blueWallCrash;
+	}
+
+	public void setbluetWallCrash(boolean blueWallCrash) {
+		this.blueWallCrash = blueWallCrash;
+	}
+
+
+	public boolean isLeftWallCrash() {
+		return leftWallCrash;
+	}
+
+	public void setLeftWallCrash(boolean leftWallCrash) {
+		this.leftWallCrash = leftWallCrash;
+	}
+
+	public boolean isRightWallCrash() {
+		return rightWallCrash;
+	}
+
+	public void setRightWallCrash(boolean rightWallCrash) {
+		this.rightWallCrash = rightWallCrash;
+	}
+
+	public boolean isLeft() {
+		return left;
+	}
+
+	public boolean isRight() {
+		return right;
+	}
+
+	public boolean isUp() {
+		return up;
+	}
+
+	public int getSPEED() {
+		return SPEED;
+	}
+
+	public int getJUMPSPEED() {
+		return JUMPSPEED;
+	}
 
 	// setter
 	public void setLeft(boolean left) {
@@ -48,15 +142,17 @@ public class Player extends JLabel implements Moveable {
 
 		// 처음 실행시 초기값 셋팅
 		x = 355;
-		y = 535;
+		y = 536;
 		// 플레이어 가만히 멈춘 상태
 		left = false;
 		right = false;
 		up = false;
 		down = false;
-		
+
 		leftWallCrash = false;
 		rightWallCrash = false;
+		blueWallCrash = false;
+		lastStandingAreaRed = true;
 
 		setIcon(playerR);
 		setSize(50, 50);
@@ -122,7 +218,7 @@ public class Player extends JLabel implements Moveable {
 
 			@Override
 			public void run() {
-				for (int i = 0; i < 130/JUMPSPEED; i++) {
+				for (int i = 0; i < 70; i++) {
 					y -= JUMPSPEED;
 					setLocation(x, y);
 					try {
@@ -132,11 +228,12 @@ public class Player extends JLabel implements Moveable {
 						e.printStackTrace();
 					}
 				}
+				blueWallCrash = false;
 				down();
 			}
 		}).start();
-		up= false;
 		
+
 	}
 
 	@Override
@@ -146,7 +243,21 @@ public class Player extends JLabel implements Moveable {
 
 			@Override
 			public void run() {
-				for (int i = 0; i < 130/JUMPSPEED; i++) {
+			int x = 70;
+			for (int i = 0; i < x; i++) {
+					if (blueWallCrash) {
+						blueWallCrash = false;
+						lastStandingAreaRed = false;
+						return;
+					}
+					if (!blueWallCrash) {
+						if (islastStandingAreaRed()) {
+							y = 536;
+							return;
+						}
+						x++;
+					}
+					
 					y += JUMPSPEED;
 					setLocation(x, y);
 					try {
@@ -156,10 +267,11 @@ public class Player extends JLabel implements Moveable {
 						e.printStackTrace();
 					}
 				}
+				blueWallCrash = false;
 
 			}
 		}).start();
-		down=false;
+		down = false;
 	}
 
 }

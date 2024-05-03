@@ -1,4 +1,4 @@
-package bubble.test.ex03;
+package bubble.test.ex05;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -12,6 +12,8 @@ public class BubleFrame extends JFrame {
 
 	private JLabel backgroundMap;
 	private Player player;
+	private Bubble bubble;
+	
 
 	public BubleFrame() {
 		// TODO Auto-generated constructor stub
@@ -32,8 +34,10 @@ public class BubleFrame extends JFrame {
 		setSize(1000, 640);
 
 		player = new Player();
+		
 	}
 
+	
 	private void setInitLayout() {
 		setLayout(null);
 		setResizable(false);
@@ -41,6 +45,7 @@ public class BubleFrame extends JFrame {
 		setVisible(true);
 
 		add(player);
+		//add(bubble);
 	}
 
 	private void addEventListener() {
@@ -53,15 +58,37 @@ public class BubleFrame extends JFrame {
 				switch (e.getKeyCode()) {
 
 				case KeyEvent.VK_LEFT:
-					player.left();
+					//왼쪽 누르고 있다면 
+					//key 이벤트가 계속 <-<-<-<- 
+					if (!player.isLeft() && !player.isLeftWallCrash()) {
+						player.left();
+					}
 					break;
 				case KeyEvent.VK_RIGHT:
-					player.right();
+					if (!player.isRight() && !player.isRightWallCrash()) {
+						player.right();	
+					}
 					break;
 				case KeyEvent.VK_UP:
-					player.up();
+					if(!player.isUp()) {
+						player.up();
+					}
+					
 					break;
-
+				case KeyEvent.VK_DOWN:
+					//if(!player.isUp()) {
+					//	player.up();
+					//}
+					
+					break;
+				case KeyEvent.VK_SPACE:
+					add(bubble =new Bubble(player));
+					new Thread(new BackgroundBubbleService(bubble)).start();
+					bubble.spacePress();
+					
+					break;
+				default:
+					break;
 				}
 			}
 
@@ -79,6 +106,8 @@ public class BubleFrame extends JFrame {
 				case KeyEvent.VK_UP:
 					player.setUp(false)
 					;
+					break;
+				default:
 					break;
 				}
 			}

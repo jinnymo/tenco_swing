@@ -1,4 +1,4 @@
-package bubble.test.ex03;
+package bubble.test.ex04;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -53,15 +53,31 @@ public class BubleFrame extends JFrame {
 				switch (e.getKeyCode()) {
 
 				case KeyEvent.VK_LEFT:
-					player.left();
+					//왼쪽 누르고 있다면 
+					//key 이벤트가 계속 <-<-<-<- 
+					if (!player.isLeft() && !player.isLeftWallCrash()) {
+						player.left();
+					}
 					break;
 				case KeyEvent.VK_RIGHT:
-					player.right();
+					if (!player.isRight() && !player.isRightWallCrash()) {
+						player.right();	
+					}
 					break;
 				case KeyEvent.VK_UP:
-					player.up();
+					if(!player.isUp()) {
+						player.up();
+					}
+					
 					break;
-
+				case KeyEvent.VK_DOWN:
+					//if(!player.isUp()) {
+					//	player.up();
+					//}
+					
+					break;
+				default:
+					break;
 				}
 			}
 
@@ -79,6 +95,8 @@ public class BubleFrame extends JFrame {
 				case KeyEvent.VK_UP:
 					player.setUp(false)
 					;
+					break;
+				default:
 					break;
 				}
 			}
