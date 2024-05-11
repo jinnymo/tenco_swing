@@ -53,14 +53,7 @@ public class ColorChangeFrame3 extends JFrame implements ActionListener {
 	private void addEventListner() {
 		// button이 눌러지는지 계속 지켜보는중
 
-		button1.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+		button1.addActionListener(this);
 		
 		button2.addActionListener(this);
 		button3.addActionListener(this);

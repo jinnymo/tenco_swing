@@ -19,6 +19,7 @@ public class MyImageFrame extends JFrame{
 	public MyImageFrame() {
 		initData();
 		setInitLayout();
+	
 	}
 	
 	private void initData() {
@@ -52,6 +53,7 @@ public class MyImageFrame extends JFrame{
 		public void paint(Graphics g) {
 		
 			super.paint(g);
+			System.out.println("sadf");
 			g.drawImage(image,100,a,100,100,null);
 			g.drawImage(image,200,a,100,100,null);
 			
