@@ -14,6 +14,7 @@ public class BubleFrame extends JFrame {
 	private JLabel backgroundMap;
 	private Player player;
 	private Bubble bubble;
+	BackgroundPlayerService back;
 
 	public BubleFrame() {
 		// TODO Auto-generated constructor stub
@@ -22,8 +23,9 @@ public class BubleFrame extends JFrame {
 		addEventListener();
 
 		// 백그라운드 서비스 시작
-
-		new Thread(new BackgroundPlayerService(player)).start();
+		back = new BackgroundPlayerService(player);
+		
+		new Thread(back).start();
 	}
 	
 
@@ -81,11 +83,11 @@ public class BubleFrame extends JFrame {
 					// if(!player.isUp()) {
 					// player.up();
 					// }
-
+					
 					break;
 				case KeyEvent.VK_SPACE:
-					player.attack();
-
+					back.setAdress("img/background.png");
+					
 					break;
 				default:
 					break;

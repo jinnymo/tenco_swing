@@ -11,11 +11,14 @@ public class BackgroundBubbleService {
 
 	private BufferedImage image;
 	private Bubble bubble;
+	String adress= "img/backgroundMapService.png";
 
 	public BackgroundBubbleService(Bubble bubble) {
 		this.bubble = bubble;
+		System.out.println(adress);
 		try {
-			image = ImageIO.read(new File("img/backgroundMapService.png"));
+			
+			image = ImageIO.read(new File(adress));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

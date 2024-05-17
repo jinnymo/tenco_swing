@@ -12,11 +12,16 @@ public class BackgroundPlayerService implements Runnable {
 	private BufferedImage image;
 	private Player player;
 	private Bubble bubble;
+	String adress = "img/backgroundMapService.png";
 
+	public void setAdress(String a) {
+		this.adress = a;
+	}
+	
 	public BackgroundPlayerService(Player player) {
 		this.player = player;
 		try {
-			image = ImageIO.read(new File("img/backgroundMapService.png"));
+			image = ImageIO.read(new File(adress));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -26,6 +31,7 @@ public class BackgroundPlayerService implements Runnable {
 	@Override
 	public void run() {
 		while (true) {
+			System.out.println(adress);
 			Color leftColor = new Color(image.getRGB(player.getX(), player.getY() + 25));
 			Color rightColor = new Color(image.getRGB(player.getX() + 50, player.getY() + 25));
 			Color bottomColor = new Color(image.getRGB(player.getX() + 25, player.getY() + 50));

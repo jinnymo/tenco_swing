@@ -90,7 +90,7 @@ public class BubleFrame extends JFrame {
 
 					break;
 				case KeyEvent.VK_SPACE:
-					player.attack();
+					//player.attack();
 
 					break;
 				default:
